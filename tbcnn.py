@@ -49,6 +49,7 @@ class TBCNNCell(torch.nn.Module):
             
             children_state=child_h_left+child_h_right
             children_state=children_state.sum(dim=1)
+            h=torch.relu(children_state+torch.matmul(nodes.data['h'],self.W_top)+self.b_conv)
         '''child_nums=nodes.mailbox['h'].size()[1]
         if child_nums==1:
             W_child=(self.W_left+self.W_right)/2
